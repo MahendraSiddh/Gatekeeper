@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Parent kept for dependency management; OK for aggregator poms -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.5.4</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.slay</groupId>
+  <artifactId>gatekeeper</artifactId>        <!-- changed from ratelimitter -->
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>                <!-- IMPORTANT: aggregator must be pom -->
+
+  <name>Gatekeeper</name>
+  <description>Gatekeeper multi-module project</description>
+
+  <properties>
+    <java.version>21</java.version>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>21</maven.compiler.release>
+</properties>
+
+
+  <!-- List the actual module directories present in your repo -->
+  <modules>
+    <module>authenticator-service</module>
+    <module>models</module>
+    <module>order-service</module>
+    <module>product-service</module>
+    <module>route-service</module>
+  </modules>
+
+  <!-- (Optional) common dependencyManagement or pluginManagement can go here -->
+  <dependencyManagement>
+    <!-- keep empty or add shared BOMs if needed -->
+  </dependencyManagement>
+  
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- This is safe to keep; individual modules should provide their own spring-boot plugin configuration -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>3.5.4</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
